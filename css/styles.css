@@ -4,16 +4,26 @@
  * Tailwind CSS is loaded via CDN in index.html for GitHub Pages compatibility.
  */
 
-/* Smooth toast transitions */
+/* Base font smoothing and typography */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Toast slide & fade */
 .toast {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateX(0);
 }
 
 .toast.hidden {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-1rem) translateX(1rem);
   pointer-events: none;
 }
 
@@ -52,11 +62,34 @@
   to { background-position: 0 0; }
 }
 
-/* File input focus ring */
+/* File upload drop zone */
+.drop-zone {
+  position: relative;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-active {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.drop-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Form focus states */
 input:focus,
-button:focus {
+button:focus,
+select:focus,
+textarea:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 /* Subtle card hover lift */
@@ -66,7 +99,8 @@ button:focus {
 }
 
 /* Ensure disabled button cursor */
-button:disabled {
+button:disabled,
+input:disabled {
   cursor: not-allowed;
   opacity: 0.65;
 }

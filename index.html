@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stealth Translations - Voice Artist Application</title>
+  <title>Two-Person Conversational Voice Recording Project · Stealth Translations Ltd</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS via CDN for GitHub Pages static hosting -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,162 +18,289 @@
       theme: {
         extend: {
           colors: {
-            brand: { 600: '#1e40af', 700: '#1d4ed8' },
+            brand: { 600: '#2563eb', 700: '#1d4ed8' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
           },
         },
       },
     };
   </script>
 </head>
-<body class="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
+<body class="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased flex flex-col">
 
-  <!-- Header -->
-  <header class="bg-brand-700 text-white py-8 shadow-sm">
-    <div class="max-w-2xl mx-auto px-6 text-center">
-      <h1 class="text-3xl font-bold tracking-tight">Voice Artist Application</h1>
-      <p class="mt-2 opacity-90">Stealth Translations Ltd &middot; Submit your details and a sample recording</p>
+  <!-- Header / Navbar -->
+  <header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group" aria-label="Stealth Translations Ltd home">
+        <img
+          src="stealth-logo.png"
+          alt="Stealth Translations Ltd"
+          class="h-10 w-auto"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <span class="hidden h-10 w-10 items-center justify-center rounded-lg bg-slate-900 text-white text-sm font-bold tracking-wider">STL</span>
+        <span class="font-bold text-slate-900 text-lg tracking-tight hidden sm:block">Stealth Translations Ltd</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="#" class="hover:text-brand-700 transition">Careers</a>
+        <a href="#" class="hover:text-brand-700 transition">Projects</a>
+        <a href="#" class="hover:text-brand-700 transition">Contact</a>
+      </nav>
     </div>
   </header>
 
+  <!-- Hero -->
+  <section class="bg-white border-b border-slate-200 py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wide mb-4">Open for Applications</div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-4">Two-Person Conversational Voice Recording Project</h1>
+        <p class="text-lg text-slate-600 leading-relaxed max-w-2xl">Qualify by submitting a 1&ndash;2 minute sample recording of a 2-person dialogue. We are seeking pairs of voice artists and speakers for a conversational audio collection project.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Main -->
-  <main class="flex-grow px-4 py-10">
-    <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 p-8 card-hover transition-all duration-300">
+  <main class="flex-grow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-      <!-- Job Posting -->
-      <section class="mb-8 pb-8 border-b border-slate-200">
-        <h2 class="text-2xl font-bold text-brand-700 mb-2">Two-Person Conversational Voice Recording Project</h2>
-        <p class="text-slate-600 mb-6 italic">Qualify by submitting a 1&ndash;2 minute sample recording of a 2-person dialogue.</p>
+        <!-- Left Column: Job Details -->
+        <div class="lg:col-span-7 space-y-8">
 
-        <p class="text-slate-700 mb-6">
-          We are seeking pairs of voice artists/speakers for a conversational audio collection project. To qualify, you must submit a <strong>1 to 2-minute sample recording featuring two speakers</strong>. Recordings can be recorded using tools like <strong>Riverside</strong> (as per project instructions) and uploaded via the form below.
-        </p>
+          <!-- Project Overview -->
+          <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" />
+                </svg>
+              </span>
+              <h2 class="text-xl font-bold text-slate-900">Project Overview</h2>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-4">
+              We are seeking pairs of voice artists/speakers for a conversational audio collection project. To qualify, you must submit a <strong class="text-slate-900">1 to 2-minute sample recording featuring two speakers</strong>.
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              Recordings can be produced using tools such as <strong class="text-slate-900">Riverside</strong> (as per project instructions) and uploaded securely via the form on the right. Selected applicants will be contacted for the full project.
+            </p>
+          </section>
 
-        <h3 class="text-lg font-semibold text-slate-800 mt-5 mb-3">Conversation Topics &amp; Domains</h3>
-        <p class="text-sm text-slate-500 mb-3">Must be natural, unscripted, everyday conversations.</p>
-        <ul class="list-disc pl-5 space-y-2 text-slate-700 text-sm">
-          <li><strong>Travel &amp; Vacations:</strong> e.g., planning a weekend getaway, discussing favorite past trips, or flight delays.</li>
-          <li><strong>Food &amp; Cooking:</strong> e.g., sharing a favorite recipe, debating dinner spots, or grocery shopping habits.</li>
-          <li><strong>Technology &amp; Everyday Life:</strong> e.g., recommending a new smartphone app, setting up smart home gear, or tech frustration stories.</li>
-          <li><strong>Entertainment &amp; Hobbies:</strong> e.g., discussing a recent movie/series, sports highlights, or weekend activities.</li>
-          <li><strong>Work &amp; Daily Routines:</strong> e.g., talking about remote work setups, morning routines, or upcoming events.</li>
-        </ul>
+          <!-- Conversation Topics & Domains -->
+          <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.78 8.78 0 01-4.06-.984L2 17l1.348-3.062A8.204 8.204 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+                </svg>
+              </span>
+              <h2 class="text-xl font-bold text-slate-900">Conversation Topics &amp; Domains</h2>
+            </div>
+            <p class="text-sm text-slate-500 mb-6">All submissions must be natural, unscripted, everyday conversations.</p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="rounded-lg border border-slate-200 p-4 hover:border-blue-300 transition">
+                <h3 class="font-semibold text-slate-900 mb-1">Travel &amp; Vacations</h3>
+                <p class="text-sm text-slate-600">Planning a weekend getaway, discussing favourite past trips, or flight delays.</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 p-4 hover:border-blue-300 transition">
+                <h3 class="font-semibold text-slate-900 mb-1">Food &amp; Cooking</h3>
+                <p class="text-sm text-slate-600">Sharing a favourite recipe, debating dinner spots, or grocery shopping habits.</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 p-4 hover:border-blue-300 transition">
+                <h3 class="font-semibold text-slate-900 mb-1">Technology &amp; Everyday Life</h3>
+                <p class="text-sm text-slate-600">Recommending a smartphone app, setting up smart home gear, or tech frustration stories.</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 p-4 hover:border-blue-300 transition">
+                <h3 class="font-semibold text-slate-900 mb-1">Entertainment &amp; Hobbies</h3>
+                <p class="text-sm text-slate-600">Discussing a recent movie or series, sports highlights, or weekend activities.</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 p-4 hover:border-blue-300 transition sm:col-span-2">
+                <h3 class="font-semibold text-slate-900 mb-1">Work &amp; Daily Routines</h3>
+                <p class="text-sm text-slate-600">Talking about remote work setups, morning routines, or upcoming events.</p>
+              </div>
+            </div>
+          </section>
 
-        <h3 class="text-lg font-semibold text-slate-800 mt-5 mb-3">Recording Requirements &amp; Guidelines</h3>
-        <ul class="list-disc pl-5 space-y-2 text-slate-700 text-sm">
-          <li><strong>Natural Speech:</strong> Must sound completely unscripted, spontaneous, and conversational (do NOT read from a text/script).</li>
-          <li><strong>Acoustic Environment:</strong> Quiet room with no background noise (strictly NO TV, background music, animal sounds, or street/traffic noise).</li>
-          <li><strong>Speaker Separation:</strong> Both speakers must be in separate locations/rooms so the audio doesn't bleed into the second person's channel.</li>
-          <li><strong>Overlapping:</strong> Avoid talking over each other too much&mdash;allow natural back-and-forth turns.</li>
-          <li><strong>Microphone Handling:</strong> Use a quality microphone or smartphone. Keep the mic at a safe distance (~20 cm / 8 inches from the mouth) and avoid touching, holding, or bumping the microphone during recording.</li>
-        </ul>
-      </section>
-
-      <p class="text-slate-500 mb-6 text-sm leading-relaxed">
-        Please complete the form below. Your audio sample will be uploaded privately and reviewed by our operations team.
-      </p>
-
-      <form id="application-form" class="space-y-6" novalidate>
-
-        <!-- Full Name -->
-        <div>
-          <label for="full-name" class="block text-sm font-semibold text-slate-700 mb-1">Full Name</label>
-          <input
-            type="text"
-            id="full-name"
-            name="full_name"
-            required
-            autocomplete="name"
-            placeholder="e.g., Maria González"
-            class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:border-brand-700 focus:ring-1 focus:ring-brand-700 transition"
-          >
+          <!-- Recording Requirements -->
+          <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd" />
+                </svg>
+              </span>
+              <h2 class="text-xl font-bold text-slate-900">Recording Requirements &amp; Guidelines</h2>
+            </div>
+            <ul class="space-y-4">
+              <li class="flex gap-3">
+                <span class="shrink-0 h-5 w-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold mt-0.5">1</span>
+                <div>
+                  <h3 class="font-semibold text-slate-900">Natural Speech</h3>
+                  <p class="text-slate-600 text-sm">Must sound completely unscripted, spontaneous, and conversational. Do <strong class="text-slate-900">not</strong> read from a script.</p>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="shrink-0 h-5 w-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold mt-0.5">2</span>
+                <div>
+                  <h3 class="font-semibold text-slate-900">Acoustic Environment</h3>
+                  <p class="text-slate-600 text-sm">Quiet room with no background noise. Strictly no TV, music, animal sounds, or street/traffic noise.</p>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="shrink-0 h-5 w-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold mt-0.5">3</span>
+                <div>
+                  <h3 class="font-semibold text-slate-900">Speaker Separation</h3>
+                  <p class="text-slate-600 text-sm">Both speakers must be in separate locations/rooms so the audio doesn&apos;t bleed into the second person&apos;s channel.</p>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="shrink-0 h-5 w-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold mt-0.5">4</span>
+                <div>
+                  <h3 class="font-semibold text-slate-900">Overlapping</h3>
+                  <p class="text-slate-600 text-sm">Avoid talking over each other too much&mdash;allow natural back-and-forth turns.</p>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="shrink-0 h-5 w-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold mt-0.5">5</span>
+                <div>
+                  <h3 class="font-semibold text-slate-900">Microphone Handling</h3>
+                  <p class="text-slate-600 text-sm">Use a quality microphone or smartphone. Keep the mic ~20 cm / 8 inches from the mouth and avoid touching, holding, or bumping it during recording.</p>
+                </div>
+              </li>
+            </ul>
+          </section>
         </div>
 
-        <!-- Email -->
-        <div>
-          <label for="email" class="block text-sm font-semibold text-slate-700 mb-1">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            autocomplete="email"
-            placeholder="you@example.com"
-            class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:border-brand-700 focus:ring-1 focus:ring-brand-700 transition"
-          >
-        </div>
+        <!-- Right Column: Application Form -->
+        <aside class="lg:col-span-5 lg:sticky lg:top-24">
+          <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-6 lg:p-8">
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold text-slate-900">Apply for this role</h2>
+              <p class="text-slate-500 text-sm mt-1">Your audio sample will be uploaded privately and reviewed by our operations team.</p>
+            </div>
 
-        <!-- Audio Upload -->
-        <div>
-          <label for="audio-file" class="block text-sm font-semibold text-slate-700 mb-1">Audio Sample</label>
-          <input
-            type="file"
-            id="audio-file"
-            name="audio_file"
-            accept="audio/*"
-            required
-            class="block w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-slate-100 file:text-brand-700 hover:file:bg-slate-200 transition"
-          >
+            <form id="application-form" class="space-y-5" novalidate>
 
-          <!-- File info / size validation -->
-          <div id="file-info" class="hidden mt-3 text-sm text-slate-600 bg-slate-50 border border-slate-200 rounded-lg p-3">
-            Selected file size: <span id="file-size" class="font-medium text-slate-800">0 B</span>
+              <!-- Full Name -->
+              <div>
+                <label for="full-name" class="block text-sm font-semibold text-slate-700 mb-1.5">Full Name</label>
+                <input
+                  type="text"
+                  id="full-name"
+                  name="full_name"
+                  required
+                  autocomplete="name"
+                  placeholder="e.g., Maria González"
+                  class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 bg-white focus:border-brand-700 focus:ring-2 focus:ring-blue-600 focus:ring-opacity-20 transition"
+                >
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label for="email" class="block text-sm font-semibold text-slate-700 mb-1.5">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                  class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 bg-white focus:border-brand-700 focus:ring-2 focus:ring-blue-600 focus:ring-opacity-20 transition"
+                >
+              </div>
+
+              <!-- Audio Upload (drop zone) -->
+              <div>
+                <label for="audio-file" class="block text-sm font-semibold text-slate-700 mb-1.5">Audio Sample</label>
+                <label for="audio-file" class="drop-zone block w-full rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center cursor-pointer transition hover:border-blue-600 hover:bg-blue-50 focus-within:border-brand-700 focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-opacity-20">
+                  <input
+                    type="file"
+                    id="audio-file"
+                    name="audio_file"
+                    accept="audio/*"
+                    required
+                    class="sr-only"
+                  >
+                  <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-400 mb-3 shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                    </svg>
+                  </span>
+                  <p class="text-sm font-medium text-slate-700">Click or drag and drop your audio file here</p>
+                  <p class="text-xs text-slate-500 mt-1">MP3, WAV, OGG, AAC, M4A, WEBM &middot; Max 20 MB</p>
+
+                  <!-- File info / size validation -->
+                  <div id="file-info" class="hidden mt-4 text-sm text-slate-600 bg-white border border-slate-200 rounded-lg p-3 text-left">
+                    Selected file size: <span id="file-size" class="font-medium text-slate-800">0 B</span>
+                  </div>
+
+                  <p id="file-warning" class="hidden mt-3 text-sm text-red-600 font-medium text-left" aria-live="polite"></p>
+
+                  <!-- Upload progress -->
+                  <div id="upload-progress" class="hidden mt-4 text-left">
+                    <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
+                      <span>Uploading audio...</span>
+                      <span id="progress-text">0%</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                      <div id="progress-bar" class="h-full bg-brand-700 rounded-full w-0 transition-all duration-200 progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                id="submit-btn"
+                disabled
+                class="w-full flex items-center justify-center gap-2 rounded-lg bg-brand-700 px-6 py-3 text-white font-semibold shadow hover:bg-brand-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition"
+              >
+                <span id="spinner" class="spinner hidden" aria-hidden="true"></span>
+                <span>Submit Application</span>
+              </button>
+
+            </form>
           </div>
 
-          <p id="file-warning" class="hidden mt-2 text-sm text-red-600 font-medium" aria-live="polite"></p>
-
-          <!-- Upload progress -->
-          <div id="upload-progress" class="hidden mt-4">
-            <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
-              <span>Uploading audio...</span>
-              <span id="progress-text">0%</span>
-            </div>
-            <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
-              <div id="progress-bar" class="h-full bg-brand-700 rounded-full w-0 transition-all duration-200 progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
-            </div>
+          <div class="mt-6 text-center">
+            <p class="text-xs text-slate-500">Need help? Email <a href="mailto:privacy@stealthtranslations.com" class="text-brand-700 hover:underline">privacy@stealthtranslations.com</a></p>
           </div>
-        </div>
-
-        <!-- Submit -->
-        <button
-          type="submit"
-          id="submit-btn"
-          disabled
-          class="w-full flex items-center justify-center gap-2 rounded-lg bg-brand-700 px-6 py-3 text-white font-semibold shadow hover:bg-brand-600 focus:ring-2 focus:ring-offset-2 focus:ring-brand-700 transition"
-        >
-          <span id="spinner" class="spinner hidden" aria-hidden="true"></span>
-          <span>Submit Application</span>
-        </button>
-
-      </form>
+        </aside>
+      </div>
     </div>
   </main>
 
   <!-- Success Toast -->
-  <div id="success-toast" class="toast hidden fixed top-4 right-4 max-w-sm w-full bg-green-50 border border-green-200 text-green-900 rounded-xl shadow-lg p-4 z-50" role="alert">
+  <div id="success-toast" class="toast hidden fixed top-4 right-4 max-w-sm w-full bg-white border-l-4 border-green-500 text-slate-800 rounded-xl shadow-xl p-4 z-50" role="alert">
     <div class="flex items-start gap-3">
-      <div class="shrink-0 w-6 h-6 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-sm">✓</div>
+      <div class="shrink-0 w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-sm">✓</div>
       <div>
-        <p class="font-semibold text-green-900">Application Submitted</p>
-        <p id="success-message" class="text-sm text-green-800 mt-1"></p>
+        <p class="font-semibold text-slate-900">Application Submitted</p>
+        <p id="success-message" class="text-sm text-slate-600 mt-1"></p>
       </div>
-      <button type="button" class="toast-close ml-auto text-green-700 hover:text-green-900" aria-label="Close">×</button>
+      <button type="button" class="toast-close ml-auto text-slate-400 hover:text-slate-700" aria-label="Close">×</button>
     </div>
   </div>
 
   <!-- Error Toast -->
-  <div id="error-toast" class="toast hidden fixed top-4 right-4 max-w-sm w-full bg-red-50 border border-red-200 text-red-900 rounded-xl shadow-lg p-4 z-50" role="alert">
+  <div id="error-toast" class="toast hidden fixed top-4 right-4 max-w-sm w-full bg-white border-l-4 border-red-500 text-slate-800 rounded-xl shadow-xl p-4 z-50" role="alert">
     <div class="flex items-start gap-3">
-      <div class="shrink-0 w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-sm">!</div>
+      <div class="shrink-0 w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center font-bold text-sm">!</div>
       <div>
-        <p class="font-semibold text-red-900">Submission Failed</p>
-        <p id="error-message" class="text-sm text-red-800 mt-1"></p>
+        <p class="font-semibold text-slate-900">Submission Failed</p>
+        <p id="error-message" class="text-sm text-slate-600 mt-1"></p>
       </div>
-      <button type="button" class="toast-close ml-auto text-red-700 hover:text-red-900" aria-label="Close">×</button>
+      <button type="button" class="toast-close ml-auto text-slate-400 hover:text-slate-700" aria-label="Close">×</button>
     </div>
   </div>
 
-  <footer class="text-center text-slate-400 text-sm py-6">
-    &copy; Stealth Translations Ltd. Your data is processed in accordance with our privacy notice.
+  <footer class="bg-slate-900 text-slate-400 text-sm py-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>&copy; 2026 Stealth Translations Ltd. All rights reserved. Data submitted is processed securely under strict privacy guidelines.</p>
+    </div>
   </footer>
 
   <script type="module" src="js/app.js"></script>
