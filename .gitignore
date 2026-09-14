@@ -1,0 +1,35 @@
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.env
+secrets.json
+config.json
+
+# Node modules (if installed locally for linting/preview)
+node_modules/
+
+# Build output
+/dist
+/build
+.vite
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Test artifacts
+coverage/
+.nyc_output/
