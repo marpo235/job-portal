@@ -211,6 +211,36 @@
                 >
               </div>
 
+              <!-- Age -->
+              <div>
+                <label for="age" class="block text-sm font-semibold text-slate-700 mb-1.5">Age</label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  min="18"
+                  max="99"
+                  required
+                  placeholder="e.g., 28"
+                  class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 bg-white focus:border-brand-700 focus:ring-2 focus:ring-blue-600 focus:ring-opacity-20 transition"
+                >
+              </div>
+
+              <!-- Gender -->
+              <div>
+                <label for="gender" class="block text-sm font-semibold text-slate-700 mb-1.5">Gender</label>
+                <select
+                  id="gender"
+                  name="gender"
+                  required
+                  class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 bg-white focus:border-brand-700 focus:ring-2 focus:ring-blue-600 focus:ring-opacity-20 transition"
+                >
+                  <option value="" disabled selected>-- Select Gender --</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+
               <!-- Audio Upload (drop zone) -->
               <div>
                 <label for="audio-file" class="block text-sm font-semibold text-slate-700 mb-1.5">Audio Sample</label>

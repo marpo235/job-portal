@@ -40,6 +40,8 @@ function setSubmitting(isSubmitting) {
   fileInput.disabled = isSubmitting;
   document.getElementById("full-name").disabled = isSubmitting;
   document.getElementById("email").disabled = isSubmitting;
+  document.getElementById("age").disabled = isSubmitting;
+  document.getElementById("gender").disabled = isSubmitting;
   spinner.classList.toggle("hidden", !isSubmitting);
 }
 
@@ -118,14 +120,21 @@ form.addEventListener("submit", async (e) => {
 
   const fullName = document.getElementById("full-name").value.trim();
   const email = document.getElementById("email").value.trim();
+  const age = parseInt(document.getElementById("age").value, 10);
+  const gender = document.getElementById("gender").value;
 
-  if (!fullName || !email) {
-    showError("Please fill in your full name and email address.");
+  if (!fullName || !email || !gender) {
+    showError("Please fill in all required fields.");
     return;
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     showError("Please enter a valid email address.");
+    return;
+  }
+
+  if (Number.isNaN(age) || age < 18 || age > 99) {
+    showError("Please enter a valid age between 18 and 99.");
     return;
   }
 
@@ -148,10 +157,13 @@ form.addEventListener("submit", async (e) => {
     const record = {
       full_name: fullName,
       email: email,
+      age: age,
+      gender: gender,
       audio_file_path: upload.filePath,
       ip_address: geo.ip,
       city: geo.city,
       country: geo.country,
+      submitted_at: new Date().toISOString(),
     };
 
     const saved = await insertApplication(record);
