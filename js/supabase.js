@@ -42,16 +42,14 @@ function ensureClient() {
 }
 
 /**
- * Upload an audio file to the private Supabase storage bucket.
+ * Upload an audio file to the private Supabase storage bucket with a custom path.
  * @param {File} file
+ * @param {string} path
  * @param {(percent: number) => void} onProgress
  * @returns {Promise<{ filePath: string, fullPath: string }>}
  */
-export async function uploadAudio(file, onProgress) {
+export async function uploadAudioFile(file, path, onProgress) {
   ensureClient();
-
-  const safeName = file.name.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9._-]/g, "");
-  const path = `${Date.now()}_${safeName}`;
 
   const { data, error } = await supabase.storage
     .from(BUCKET_NAME)
@@ -67,10 +65,22 @@ export async function uploadAudio(file, onProgress) {
     });
 
   if (error) {
-    throw new Error(`Audio upload failed: ${error.message}`);
+    throw new Error(`Audio upload failed for "${path}": ${error.message}`);
   }
 
   return { filePath: data.path, fullPath: data.fullPath };
+}
+
+/**
+ * Backwards-compatible single-file helper. Generates a timestamped path.
+ * @param {File} file
+ * @param {(percent: number) => void} onProgress
+ * @returns {Promise<{ filePath: string, fullPath: string }>}
+ */
+export async function uploadAudio(file, onProgress) {
+  const safeName = file.name.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9._-]/g, "");
+  const path = `${Date.now()}_${safeName}`;
+  return uploadAudioFile(file, path, onProgress);
 }
 
 /**

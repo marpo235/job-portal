@@ -1,24 +1,36 @@
 /**
  * app.js
- * Main form controller: validation, audio upload, geolocation, feedback states.
+ * Main form controller: validation, multi-file audio upload,
+ * applicant ID generation, geolocation, and feedback states.
  */
 
-import { uploadAudio, insertApplication } from "./supabase.js";
+import { uploadAudioFile, insertApplication } from "./supabase.js";
 import { getGeoData } from "./geo.js";
 
-const MAX_FILE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB
-const ALLOWED_TYPES = ["audio/mpeg", "audio/wav", "audio/wave", "audio/ogg", "audio/aac", "audio/mp4", "audio/webm"];
+const MAX_FILE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB per file
+const MAX_TOTAL_SIZE_BYTES = 50 * 1024 * 1024; // 50 MB total batch
+const ALLOWED_TYPES = [
+  "audio/mpeg",
+  "audio/wav",
+  "audio/wave",
+  "audio/ogg",
+  "audio/aac",
+  "audio/mp4",
+  "audio/webm",
+];
 
-let selectedFile = null;
+let selectedFiles = [];
 
 const form = document.getElementById("application-form");
-const fileInput = document.getElementById("audio-file");
-const fileInfo = document.getElementById("file-info");
-const fileSize = document.getElementById("file-size");
+const fileInput = document.getElementById("audioFile");
+const fileList = document.getElementById("file-list");
+const fileItems = document.getElementById("file-items");
+const totalSize = document.getElementById("total-size");
 const fileWarning = document.getElementById("file-warning");
 const uploadProgress = document.getElementById("upload-progress");
 const progressBar = document.getElementById("progress-bar");
 const progressText = document.getElementById("progress-text");
+const progressLabel = document.getElementById("progress-label");
 const submitBtn = document.getElementById("submit-btn");
 const spinner = document.getElementById("spinner");
 const successToast = document.getElementById("success-toast");
@@ -54,6 +66,10 @@ function updateProgress(percent) {
   progressText.textContent = `${percent}%`;
 }
 
+function setProgressLabel(text) {
+  if (progressLabel) progressLabel.textContent = text;
+}
+
 function showSuccess(message) {
   successMessage.textContent = message;
   successToast.classList.remove("hidden");
@@ -72,42 +88,87 @@ function hideToasts() {
 }
 
 function validateFile(file) {
-  if (!file) return "Please select an audio file.";
+  if (!file) return "Please select at least one audio file.";
 
   if (file.size > MAX_FILE_SIZE_BYTES) {
-    return `Audio file is too large. Maximum allowed is ${formatBytes(MAX_FILE_SIZE_BYTES)}. Selected: ${formatBytes(file.size)}.`;
+    return `One or more files are too large. Max per file is ${formatBytes(MAX_FILE_SIZE_BYTES)}.`;
   }
 
   if (!ALLOWED_TYPES.includes(file.type) && !file.type.startsWith("audio/")) {
-    return "Please upload a valid audio file (e.g., MP3, WAV, OGG, AAC, M4A, WEBM).";
+    return "Please upload valid audio files (e.g., MP3, WAV, OGG, AAC, M4A, WEBM).";
   }
 
   return null;
 }
 
-fileInput.addEventListener("change", () => {
-  selectedFile = fileInput.files[0] || null;
-  hideToasts();
+function validateFiles(files) {
+  if (!files.length) return "Please select at least one audio file.";
 
-  if (!selectedFile) {
-    fileInfo.classList.add("hidden");
-    fileWarning.textContent = "";
-    fileWarning.classList.add("hidden");
-    submitBtn.disabled = true;
+  let total = 0;
+  for (const file of files) {
+    const err = validateFile(file);
+    if (err) return err;
+    total += file.size;
+  }
+
+  if (total > MAX_TOTAL_SIZE_BYTES) {
+    return `Total upload size is too large. Max allowed is ${formatBytes(MAX_TOTAL_SIZE_BYTES)}. Selected: ${formatBytes(total)}.`;
+  }
+
+  return null;
+}
+
+function renderFileList(files) {
+  if (!files.length) {
+    fileList.classList.add("hidden");
     return;
   }
 
-  fileInfo.classList.remove("hidden");
-  fileSize.textContent = formatBytes(selectedFile.size);
+  fileItems.innerHTML = "";
+  let total = 0;
 
-  const error = validateFile(selectedFile);
+  files.forEach((file, index) => {
+    total += file.size;
+    const li = document.createElement("li");
+    li.className = "flex items-center justify-between";
+    li.innerHTML = `<span class="truncate mr-2">${escapeHtml(file.name)}</span><span class="shrink-0 text-slate-500">${formatBytes(file.size)}</span>`;
+    fileItems.appendChild(li);
+  });
+
+  totalSize.textContent = formatBytes(total);
+  fileList.classList.remove("hidden");
+}
+
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function generateApplicantId() {
+  // 3-digit zero-padded short ID from the last 3 digits of the current timestamp
+  const timestamp = Date.now();
+  return String(timestamp % 1000).padStart(3, "0");
+}
+
+function getFileExtension(filename) {
+  const parts = filename.split(".");
+  return parts.length > 1 ? parts.pop().toLowerCase() : "mp3";
+}
+
+fileInput.addEventListener("change", () => {
+  selectedFiles = Array.from(fileInput.files || []);
+  hideToasts();
+  renderFileList(selectedFiles);
+
+  const error = validateFiles(selectedFiles);
   if (error) {
     fileWarning.textContent = error;
     fileWarning.classList.remove("hidden");
     submitBtn.disabled = true;
     fileInput.value = "";
-    selectedFile = null;
-    fileInfo.classList.add("hidden");
+    selectedFiles = [];
+    fileList.classList.add("hidden");
   } else {
     fileWarning.textContent = "";
     fileWarning.classList.add("hidden");
@@ -138,7 +199,7 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  const fileError = validateFile(selectedFile);
+  const fileError = validateFiles(selectedFiles);
   if (fileError) {
     showError(fileError);
     return;
@@ -147,19 +208,34 @@ form.addEventListener("submit", async (e) => {
   setSubmitting(true);
   showProgress(true);
   updateProgress(0);
+  setProgressLabel("Preparing upload...");
 
   try {
-    const [geo, upload] = await Promise.all([
-      getGeoData(),
-      uploadAudio(selectedFile, (percent) => updateProgress(percent)),
-    ]);
+    const geo = await getGeoData();
+    const applicantId = generateApplicantId();
+    const uploadedPaths = [];
+
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      const ext = getFileExtension(file.name);
+      const path = `${applicantId}_f${i + 1}.${ext}`;
+
+      setProgressLabel(`Uploading file ${i + 1} of ${selectedFiles.length}...`);
+
+      const { filePath } = await uploadAudioFile(file, path, (percent) =>
+        updateProgress(percent)
+      );
+
+      uploadedPaths.push(filePath);
+    }
 
     const record = {
       full_name: fullName,
       email: email,
       age: age,
       gender: gender,
-      audio_file_path: upload.filePath,
+      audio_file_path: uploadedPaths[0],
+      audio_files: uploadedPaths,
       ip_address: geo.ip,
       city: geo.city,
       country: geo.country,
@@ -169,12 +245,14 @@ form.addEventListener("submit", async (e) => {
     const saved = await insertApplication(record);
 
     updateProgress(100);
+    setProgressLabel("Upload complete");
     showSuccess(
-      `Application submitted successfully. Reference ID: ${saved.id}. We will be in touch soon.`
+      `Application submitted successfully. Reference ID: ${saved.id}. Applicant: ${applicantId}.`
     );
     form.reset();
-    selectedFile = null;
-    fileInfo.classList.add("hidden");
+    selectedFiles = [];
+    fileInput.value = "";
+    renderFileList([]);
     fileWarning.classList.add("hidden");
     submitBtn.disabled = true;
   } catch (err) {
@@ -187,6 +265,7 @@ form.addEventListener("submit", async (e) => {
     setTimeout(() => {
       showProgress(false);
       updateProgress(0);
+      setProgressLabel("Uploading audio...");
     }, 1500);
   }
 });

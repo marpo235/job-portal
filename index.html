@@ -86,6 +86,20 @@
             <p class="text-slate-600 leading-relaxed">
               Recordings can be produced using tools such as <strong class="text-slate-900">Riverside</strong> (as per project instructions) and uploaded securely via the form on the right. Selected applicants will be contacted for the full project.
             </p>
+
+            <div class="mt-6 rounded-xl border border-blue-200 bg-blue-50 p-4">
+              <p class="text-sm text-blue-900 leading-relaxed">
+                Please review the full Audio Specifications &amp; Riverside Recording Instructions before creating your sample.
+              </p>
+              <a
+                href="https://drive.google.com/file/d/1eRcQHlmx6NmaNIK_oVsvwR_Ud67VroLz/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-3 inline-flex items-center rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800 focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition"
+              >
+                Open Instructions
+              </a>
+            </div>
           </section>
 
           <!-- Conversation Topics & Domains -->
@@ -243,13 +257,14 @@
 
               <!-- Audio Upload (drop zone) -->
               <div>
-                <label for="audio-file" class="block text-sm font-semibold text-slate-700 mb-1.5">Audio Sample</label>
-                <label for="audio-file" class="drop-zone block w-full rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center cursor-pointer transition hover:border-blue-600 hover:bg-blue-50 focus-within:border-brand-700 focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-opacity-20">
+                <label for="audioFile" class="block text-sm font-semibold text-slate-700 mb-1.5">Upload Audio Samples (2 to 3 files recommended)</label>
+                <label for="audioFile" class="drop-zone block w-full rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center cursor-pointer transition hover:border-blue-600 hover:bg-blue-50 focus-within:border-brand-700 focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-opacity-20">
                   <input
                     type="file"
-                    id="audio-file"
+                    id="audioFile"
                     name="audio_file"
                     accept="audio/*"
+                    multiple
                     required
                     class="sr-only"
                   >
@@ -258,12 +273,14 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                     </svg>
                   </span>
-                  <p class="text-sm font-medium text-slate-700">Click or drag and drop your audio file here</p>
-                  <p class="text-xs text-slate-500 mt-1">MP3, WAV, OGG, AAC, M4A, WEBM &middot; Max 20 MB</p>
+                  <p class="text-sm font-medium text-slate-700">Click or drag and drop your audio files here</p>
+                  <p class="text-xs text-slate-500 mt-1">MP3, WAV, OGG, AAC, M4A, WEBM &middot; Max 50 MB total</p>
 
-                  <!-- File info / size validation -->
-                  <div id="file-info" class="hidden mt-4 text-sm text-slate-600 bg-white border border-slate-200 rounded-lg p-3 text-left">
-                    Selected file size: <span id="file-size" class="font-medium text-slate-800">0 B</span>
+                  <!-- Selected files list / size validation -->
+                  <div id="file-list" class="hidden mt-4 text-left bg-white rounded-lg border border-slate-200 p-3">
+                    <p class="text-sm font-medium text-slate-700 mb-2">Selected files</p>
+                    <ul id="file-items" class="space-y-2 text-sm text-slate-600 list-disc pl-4"></ul>
+                    <p class="mt-3 text-sm font-semibold text-slate-700">Total: <span id="total-size">0 B</span></p>
                   </div>
 
                   <p id="file-warning" class="hidden mt-3 text-sm text-red-600 font-medium text-left" aria-live="polite"></p>
@@ -271,7 +288,7 @@
                   <!-- Upload progress -->
                   <div id="upload-progress" class="hidden mt-4 text-left">
                     <div class="flex justify-between text-xs font-medium text-slate-600 mb-1">
-                      <span>Uploading audio...</span>
+                      <span id="progress-label">Uploading audio...</span>
                       <span id="progress-text">0%</span>
                     </div>
                     <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
