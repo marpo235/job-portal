@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dual-Speaker Remote Recording Setup & Audio Specifications · Stealth Translations Ltd</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN for GitHub Pages static hosting -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 600: '#2563eb', 700: '#1d4ed8' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased flex flex-col">
+
+  <!-- Header / Navbar -->
+  <header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Stealth Translations Ltd home">
+        <img
+          src="stealth-logo.png"
+          alt="Stealth Translations Ltd"
+          class="h-10 w-auto"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <span class="hidden h-10 w-10 items-center justify-center rounded-lg bg-slate-900 text-white text-sm font-bold tracking-wider">STL</span>
+        <span class="font-bold text-slate-900 text-lg tracking-tight hidden sm:block">Stealth Translations Ltd</span>
+      </a>
+      <a
+        href="index.html"
+        class="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 transition"
+      >
+        Back to Application Form
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-slate-200 py-12 lg:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-4">Dual-Speaker Remote Recording Setup &amp; Audio Specifications</h1>
+      <p class="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">Follow these steps to record a clean, raw, dual-speaker WAV sample using Audacity and a web call.</p>
+    </div>
+  </section>
+
+  <!-- Audio Specs Summary -->
+  <main class="flex-grow py-12 lg:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+      <section class="rounded-2xl border border-amber-200 bg-amber-50 p-6 lg:p-8 shadow-sm">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 text-amber-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          <h2 class="text-xl font-bold text-slate-900">Audio Specifications Summary</h2>
+        </div>
+        <ul class="grid sm:grid-cols-2 gap-4 text-slate-700">
+          <li class="bg-white rounded-lg border border-amber-100 p-3"><strong class="text-slate-900">Container Format:</strong> Uncompressed WAV (`.wav`)</li>
+          <li class="bg-white rounded-lg border border-amber-100 p-3"><strong class="text-slate-900">Sample Rate:</strong> 48,000 Hz (48 kHz)</li>
+          <li class="bg-white rounded-lg border border-amber-100 p-3"><strong class="text-slate-900">Bit Depth:</strong> 32-bit float (or 24-bit PCM)</li>
+          <li class="bg-white rounded-lg border border-amber-100 p-3"><strong class="text-slate-900">Channels:</strong> Mono per speaker, aligned side-by-side</li>
+          <li class="bg-white rounded-lg border border-amber-100 p-3 sm:col-span-2"><strong class="text-slate-900">Processing:</strong> 100% raw &mdash; NO noise reduction, NO gating, NO EQ, NO compression</li>
+        </ul>
+      </section>
+
+      <!-- Step 1 -->
+      <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Step 1: The Headphone Rule (Mandatory)</h2>
+        <p class="text-slate-600 leading-relaxed mb-4">
+          Both participants <strong class="text-slate-900">MUST wear headphones</strong> during the web call. If either speaker uses open laptop speakers, their voice will bleed into the other person&apos;s microphone and the other speaker&apos;s local recording.
+        </p>
+        <p class="text-slate-600 leading-relaxed">
+          Because every submitted file must remain 100% raw (no noise removal, gating, or echo cancellation), any cross-talk captured at the source cannot be repaired later. Use headphones to ensure each Audacity recording contains only the person speaking into that local microphone.
+        </p>
+      </section>
+
+      <!-- Step 2 -->
+      <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Step 2: Connecting the Mic &amp; Audacity Setup</h2>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Open <strong class="text-slate-900">Audacity</strong> and select the local external microphone as the recording device. Do <strong class="text-slate-900">not</strong> select the web call audio device &mdash; you want the physical microphone in the room, not the call loopback.
+        </p>
+
+        <figure class="rounded-xl border border-slate-200 overflow-hidden bg-white">
+          <div class="relative">
+            <img
+              src="images/audacity-audio-setup.png"
+              alt="Audacity audio setup showing local external microphone selection"
+              class="w-full"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div class="hidden h-48 w-full items-center justify-center bg-slate-100 text-slate-500 text-sm">Image: Audacity Audio Setup</div>
+          </div>
+          <figcaption class="bg-slate-50 px-4 py-3 text-xs text-slate-500 border-t border-slate-200">Choose your local external microphone in Audacity&rsquo;s Audio Setup (not the web call audio).</figcaption>
+        </figure>
+
+        <p class="text-slate-600 leading-relaxed mt-6 mb-6">
+          Set the project rate to <strong class="text-slate-900">48,000 Hz</strong> and the track format to <strong class="text-slate-900">32-bit float</strong> (or 24-bit PCM). This ensures the exported WAV meets our exact submission requirements.
+        </p>
+
+        <figure class="rounded-xl border border-slate-200 overflow-hidden bg-white">
+          <div class="relative">
+            <img
+              src="images/audacity-project-rate.png"
+              alt="Audacity project rate set to 48,000 Hz and 32-bit float"
+              class="w-full"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div class="hidden h-48 w-full items-center justify-center bg-slate-100 text-slate-500 text-sm">Image: Audacity Project Rate</div>
+          </div>
+          <figcaption class="bg-slate-50 px-4 py-3 text-xs text-slate-500 border-t border-slate-200">Project Rate: 48,000 Hz. Default Sample Format: 32-bit float.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Step 3 -->
+      <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Step 3: The Live Call &amp; Local Recording Flow</h2>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Both speakers join a web call using <strong class="text-slate-900">Google Meet</strong>, <strong class="text-slate-900">Cleanfeed</strong>, or <strong class="text-slate-900">VDO.Ninja</strong> while wearing headphones. This call is only for conversation &mdash; neither speaker records from the call. Each speaker records locally in their own Audacity project.
+        </p>
+
+        <figure class="rounded-xl border border-slate-200 overflow-hidden bg-white">
+          <div class="relative">
+            <img
+              src="images/audacity-record-button.png"
+              alt="Audacity record button to start a local recording"
+              class="w-full"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div class="hidden h-48 w-full items-center justify-center bg-slate-100 text-slate-500 text-sm">Image: Audacity Record Button</div>
+          </div>
+          <figcaption class="bg-slate-50 px-4 py-3 text-xs text-slate-500 border-t border-slate-200">Click the red Record button in Audacity to begin the local recording on your machine.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Step 4 -->
+      <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Step 4: The Clap Sync (Crucial for Audio Alignment)</h2>
+        <p class="text-slate-600 leading-relaxed">
+          Before the conversation begins, count down together &mdash; <strong class="text-slate-900">3, 2, 1</strong> &mdash; and <strong class="text-slate-900">clap simultaneously</strong>. Both speakers must record this clap. The clap creates a sharp, easy-to-see spike on each Audacity waveform, allowing the two local tracks to be aligned precisely when they are later placed side-by-side.
+        </p>
+      </section>
+
+      <!-- Step 5 -->
+      <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">Step 5: Exporting &amp; Submission</h2>
+        <p class="text-slate-600 leading-relaxed mb-6">
+          Stop the recording, keep the file raw, and export as <strong class="text-slate-900">WAV (Microsoft) signed 32-bit float</strong> at <strong class="text-slate-900">48,000 Hz</strong>. Do not add labels, trimming, or effects before exporting.
+        </p>
+
+        <figure class="rounded-xl border border-slate-200 overflow-hidden bg-white">
+          <div class="relative">
+            <img
+              src="images/audacity-export-wav.png"
+              alt="Audacity export dialog set to 32-bit 48000 Hz WAV"
+              class="w-full"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <div class="hidden h-48 w-full items-center justify-center bg-slate-100 text-slate-500 text-sm">Image: Audacity Export WAV</div>
+          </div>
+          <figcaption class="bg-slate-50 px-4 py-3 text-xs text-slate-500 border-t border-slate-200">Export as WAV with 32-bit float and 48,000 Hz, then upload via the job portal application form.</figcaption>
+        </figure>
+
+        <div class="mt-8 text-center">
+          <a
+            href="index.html"
+            class="inline-flex items-center rounded-lg bg-brand-700 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition"
+          >
+            Return to Application Form
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 text-sm py-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>&copy; 2026 Stealth Translations Ltd. All rights reserved. Data submitted is processed securely under strict privacy guidelines.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
