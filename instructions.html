@@ -76,7 +76,7 @@
         <ul class="grid sm:grid-cols-2 gap-4 text-slate-700">
           <li class="bg-white rounded-lg border border-amber-100 p-3"><strong class="text-slate-900">Container Format:</strong> Uncompressed WAV (`.wav`)</li>
           <li class="bg-white rounded-lg border border-amber-100 p-3"><strong class="text-slate-900">Sample Rate:</strong> 48,000 Hz (48 kHz)</li>
-          <li class="bg-white rounded-lg border border-amber-100 p-3"><strong class="text-slate-900">Bit Depth:</strong> 32-bit float (or 24-bit PCM)</li>
+          <li class="bg-white rounded-lg border border-amber-100 p-3"><strong class="text-slate-900">Bit Depth:</strong> 32-bit float</li>
           <li class="bg-white rounded-lg border border-amber-100 p-3"><strong class="text-slate-900">Channels:</strong> Mono per speaker, aligned side-by-side</li>
           <li class="bg-white rounded-lg border border-amber-100 p-3 sm:col-span-2"><strong class="text-slate-900">Processing:</strong> 100% raw &mdash; NO noise reduction, NO gating, NO EQ, NO compression</li>
         </ul>
@@ -97,8 +97,13 @@
       <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-900 mb-4">Step 2: Connecting the Mic &amp; Audacity Setup</h2>
         <p class="text-slate-600 leading-relaxed mb-6">
-          Open <strong class="text-slate-900">Audacity</strong> and select the local external microphone as the recording device. Do <strong class="text-slate-900">not</strong> select the web call audio device &mdash; you want the physical microphone in the room, not the call loopback.
+          Open <strong class="text-slate-900">Audacity</strong> and select the local external microphone as the recording device. Do <strong class="text-slate-900">not</strong> select the web call audio device &mdash; you want the physical microphone in the room, not the call loopback. Each track is recorded as a <strong class="text-slate-900">1 (Mono) Channel</strong> because each speaker creates their own local file.
         </p>
+
+        <div class="rounded-xl border-2 border-red-300 bg-red-50 p-4 mb-6">
+          <h3 class="font-bold text-red-900 mb-1">CRITICAL: Set Recording Channels to 1 (Mono) Channel</h3>
+          <p class="text-sm text-red-800 leading-relaxed">Because each participant records their own local voice track separately, recording in <strong class="text-red-900">Mono</strong> prevents unnecessary file bloat and channel imbalance.</p>
+        </div>
 
         <figure class="rounded-xl border border-slate-200 overflow-hidden bg-white">
           <div class="relative">
@@ -114,7 +119,7 @@
         </figure>
 
         <p class="text-slate-600 leading-relaxed mt-6 mb-6">
-          Set the project rate to <strong class="text-slate-900">48,000 Hz</strong> and the track format to <strong class="text-slate-900">32-bit float</strong> (or 24-bit PCM). This ensures the exported WAV meets our exact submission requirements.
+          Set the project rate to <strong class="text-slate-900">48,000 Hz</strong> and the track format to <strong class="text-slate-900">32-bit float</strong>. This ensures the exported WAV meets our exact submission requirements.
         </p>
 
         <figure class="rounded-xl border border-slate-200 overflow-hidden bg-white">
@@ -135,7 +140,7 @@
       <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-900 mb-4">Step 3: The Live Call &amp; Local Recording Flow</h2>
         <p class="text-slate-600 leading-relaxed mb-6">
-          Both speakers join a web call using <strong class="text-slate-900">Google Meet</strong>, <strong class="text-slate-900">Cleanfeed</strong>, or <strong class="text-slate-900">VDO.Ninja</strong> while wearing headphones. This call is only for conversation &mdash; neither speaker records from the call. Each speaker records locally in their own Audacity project.
+          Both speakers join a web call using <strong class="text-slate-900">Zoom</strong>, <strong class="text-slate-900">Google Meet</strong>, <strong class="text-slate-900">Cleanfeed</strong>, <strong class="text-slate-900">VDO.Ninja</strong>, etc., while wearing headphones. This call is only for conversation &mdash; neither speaker records from the call. Each speaker records locally in their own Audacity project.
         </p>
 
         <figure class="rounded-xl border border-slate-200 overflow-hidden bg-white">
@@ -164,7 +169,7 @@
       <section class="bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-900 mb-4">Step 5: Exporting &amp; Submission</h2>
         <p class="text-slate-600 leading-relaxed mb-6">
-          Stop the recording, keep the file raw, and export as <strong class="text-slate-900">WAV (Microsoft) signed 32-bit float</strong> at <strong class="text-slate-900">48,000 Hz</strong>. Do not add labels, trimming, or effects before exporting.
+          Once settings are as above &mdash; press the Export button and send each speaker&rsquo;s file through our online form. For any issues please email us at <a href="mailto:vr@stealthtranslations.com" class="text-brand-700 hover:underline font-medium">vr@stealthtranslations.com</a>.
         </p>
 
         <figure class="rounded-xl border border-slate-200 overflow-hidden bg-white">
