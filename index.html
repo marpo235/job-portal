@@ -336,8 +336,15 @@
             </form>
           </div>
 
-          <div class="mt-6 text-center">
+          <div class="mt-6 text-center space-y-1">
             <p class="text-xs text-slate-500">Need help? Email <a href="mailto:vr@stealthtranslations.com" class="text-brand-700 hover:underline">vr@stealthtranslations.com</a></p>
+            <button
+              type="button"
+              id="privacy-link"
+              class="text-xs text-slate-500 hover:text-brand-700 underline"
+            >
+              Privacy Notice
+            </button>
           </div>
         </aside>
       </div>
@@ -374,6 +381,63 @@
     </div>
   </footer>
 
+  <!-- Privacy Notice Modal -->
+  <div
+    id="privacy-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+    aria-hidden="true"
+  >
+    <div class="w-full max-w-lg rounded-xl bg-white p-6 shadow-lg relative" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+      <button
+        type="button"
+        id="privacy-close"
+        class="absolute top-3 right-3 text-slate-400 hover:text-slate-700 text-2xl leading-none"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+      <h3 id="privacy-title" class="text-lg font-bold text-slate-900 mb-4">IP Address Notice</h3>
+      <p class="text-slate-600 text-sm leading-relaxed mb-6">
+        We may process and retain your IP address for the legitimate interests of recruitment and project-related verification, including security and fraud prevention. We retain it only for as long as necessary for these purposes and in accordance with applicable data-protection laws, including the GDPR.
+      </p>
+      <button
+        type="button"
+        id="privacy-understand"
+        class="w-full rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-600 transition"
+      >
+        I understand
+      </button>
+    </div>
+  </div>
+
   <script type="module" src="js/app.js"></script>
+  <script>
+    (function () {
+      const modal = document.getElementById('privacy-modal');
+      const openBtn = document.getElementById('privacy-link');
+      const closeBtn = document.getElementById('privacy-close');
+      const understandBtn = document.getElementById('privacy-understand');
+
+      function openModal() {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      if (openBtn) openBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (understandBtn) understandBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>
