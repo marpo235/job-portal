@@ -93,6 +93,16 @@ function escapeHtml(text) { const d = document.createElement("div"); d.textConte
 function generateApplicantId() { return String(Date.now() % 1000).padStart(3, "0"); }
 function getFileExtension(filename) { const p = filename.split("."); return p.length > 1 ? p.pop().toLowerCase() : "mp4"; }
 
+const accentSelect = document.getElementById("accent");
+const accentOther = document.getElementById("accent-other");
+
+accentSelect.addEventListener("change", () => {
+  const isOther = accentSelect.value === "other";
+  accentOther.classList.toggle("hidden", !isOther);
+  accentOther.required = isOther;
+  if (!isOther) accentOther.value = "";
+});
+
 fileInput.addEventListener("change", () => {
   selectedFiles = Array.from(fileInput.files || []);
   hideToasts();
@@ -124,6 +134,7 @@ form.addEventListener("submit", async (e) => {
     "country-residence": "Country of residence",
     "state-residence": "State of residence",
     "home-studio": "Access to home studio",
+    "accent": "Accent",
   };
   const vals = {};
   const missing = [];
@@ -136,6 +147,13 @@ form.addEventListener("submit", async (e) => {
     return;
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vals.email)) { showError("Please enter a valid email address."); return; }
+
+  let accent = vals.accent;
+  if (accent === "other") {
+    accent = accentOther.value.trim();
+    if (!accent) { showError("Please specify your accent."); return; }
+  }
+
   const age = parseInt(vals.age, 10);
   if (Number.isNaN(age) || age < 18 || age > 99) { showError("Please enter a valid age between 18 and 99."); return; }
   const fileError = validateFiles(selectedFiles);
@@ -169,6 +187,7 @@ form.addEventListener("submit", async (e) => {
       country_of_residence: vals["country-residence"],
       state_of_residence: vals["state-residence"],
       home_studio: vals["home-studio"] === "yes",
+      accent: accent,
       video_file_path: uploadedPaths[0],
       video_files: uploadedPaths,
       ip_address: geo.ip,

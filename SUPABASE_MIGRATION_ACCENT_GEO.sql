@@ -14,6 +14,9 @@ alter table public.job_applications
 alter table public.video_job_applications
   add column if not exists region text;
 
+alter table public.video_job_applications
+  add column if not exists accent text;
+
 -- 2. SECURITY FIX — anonymous users were able to SELECT every applicant row
 -- (names, emails, IPs). Drop any SELECT policy on job_applications that is
 -- granted to the anon role; authenticated (admin) reads are unaffected.

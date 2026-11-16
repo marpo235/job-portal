@@ -90,8 +90,8 @@ export async function insertVideoApplication(record) {
     // 42703 / PGRST204 = column does not exist (region column migration not
     // yet run). Retry without it so submissions never break.
     if (error.code === "42703" || error.code === "PGRST204") {
-      console.warn("region column missing — run SUPABASE_MIGRATION_ACCENT_GEO.sql. Retrying without it.");
-      const { region, ...rest } = record;
+      console.warn("accent/region column missing — run SUPABASE_MIGRATION_ACCENT_GEO.sql. Retrying without them.");
+      const { accent, region, ...rest } = record;
       const retry = await supabase.from(TABLE_NAME).insert(rest).select().single();
       if (retry.error) throw new Error(`Database insert failed: ${retry.error.message}`);
       return retry.data;

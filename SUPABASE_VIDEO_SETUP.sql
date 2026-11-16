@@ -14,6 +14,7 @@ create table if not exists public.video_job_applications (
   country_of_residence text not null,
   state_of_residence text not null,
   home_studio boolean not null default false,
+  accent text,
   video_file_path text,
   video_files jsonb default '[]'::jsonb,
   ip_address text,
