@@ -20,6 +20,7 @@ create table if not exists public.video_job_applications (
   city text,
   region text,
   country text,
+  archived integer not null default 0,
   submitted_at timestamptz not null default now()
 );
 
