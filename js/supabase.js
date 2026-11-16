@@ -117,11 +117,11 @@ export async function insertApplication(record) {
     }
   }
 
-  const { data, error } = await supabase
+  // NOTE: no .select() here — requesting the row back requires SELECT
+  // permission, which anonymous applicants do not (and should not) have.
+  const { error } = await supabase
     .from(TABLE_NAME)
-    .insert(record)
-    .select()
-    .single();
+    .insert(record);
 
   if (error) {
     // 42703 / PGRST204 = column does not exist (accent/region migration not
@@ -129,12 +129,12 @@ export async function insertApplication(record) {
     if (error.code === "42703" || error.code === "PGRST204") {
       console.warn("accent/region column missing — run SUPABASE_MIGRATION_ACCENT_GEO.sql. Retrying without them.");
       const { accent, region, ...rest } = record;
-      const retry = await supabase.from(TABLE_NAME).insert(rest).select().single();
+      const retry = await supabase.from(TABLE_NAME).insert(rest);
       if (retry.error) throw new Error(`Database insert failed: ${retry.error.message}`);
-      return retry.data;
+      return { ...rest, id: null };
     }
     throw new Error(`Database insert failed: ${error.message}`);
   }
 
-  return data;
+  return { ...record, id: null };
 }

@@ -265,12 +265,12 @@ form.addEventListener("submit", async (e) => {
       submitted_at: new Date().toISOString(),
     };
 
-    const saved = await insertApplication(record);
+    await insertApplication(record);
 
     updateProgress(100);
     setProgressLabel("Upload complete");
     showSuccess(
-      `Application submitted successfully. Reference ID: ${saved.id}. Applicant: ${applicantId}.`
+      `Application submitted successfully. Your applicant reference: ${applicantId}.`
     );
     form.reset();
     selectedFiles = [];
