@@ -158,6 +158,7 @@ form.addEventListener("submit", async (e) => {
       video_files: uploadedPaths,
       ip_address: geo.ip,
       city: geo.city,
+      region: geo.region,
       country: geo.country,
       submitted_at: new Date().toISOString(),
     };

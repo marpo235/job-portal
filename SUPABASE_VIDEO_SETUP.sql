@@ -18,6 +18,7 @@ create table if not exists public.video_job_applications (
   video_files jsonb default '[]'::jsonb,
   ip_address text,
   city text,
+  region text,
   country text,
   submitted_at timestamptz not null default now()
 );

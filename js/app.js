@@ -54,6 +54,8 @@ function setSubmitting(isSubmitting) {
   document.getElementById("email").disabled = isSubmitting;
   document.getElementById("age").disabled = isSubmitting;
   document.getElementById("gender").disabled = isSubmitting;
+  document.getElementById("accent").disabled = isSubmitting;
+  document.getElementById("accent-other").disabled = isSubmitting;
   spinner.classList.toggle("hidden", !isSubmitting);
 }
 
@@ -156,6 +158,16 @@ function getFileExtension(filename) {
   return parts.length > 1 ? parts.pop().toLowerCase() : "mp3";
 }
 
+const accentSelect = document.getElementById("accent");
+const accentOther = document.getElementById("accent-other");
+
+accentSelect.addEventListener("change", () => {
+  const isOther = accentSelect.value === "other";
+  accentOther.classList.toggle("hidden", !isOther);
+  accentOther.required = isOther;
+  if (!isOther) accentOther.value = "";
+});
+
 fileInput.addEventListener("change", () => {
   selectedFiles = Array.from(fileInput.files || []);
   hideToasts();
@@ -183,8 +195,11 @@ form.addEventListener("submit", async (e) => {
   const email = document.getElementById("email").value.trim();
   const age = parseInt(document.getElementById("age").value, 10);
   const gender = document.getElementById("gender").value;
+  const accentRaw = document.getElementById("accent").value;
+  const accentOtherText = document.getElementById("accent-other").value.trim();
+  const accent = accentRaw === "other" ? accentOtherText : accentRaw;
 
-  if (!fullName || !email || !gender) {
+  if (!fullName || !email || !gender || !accent) {
     showError("Please fill in all required fields.");
     return;
   }
@@ -234,10 +249,12 @@ form.addEventListener("submit", async (e) => {
       email: email,
       age: age,
       gender: gender,
+      accent: accent,
       audio_file_path: uploadedPaths[0],
       audio_files: uploadedPaths,
       ip_address: geo.ip,
       city: geo.city,
+      region: geo.region,
       country: geo.country,
       submitted_at: new Date().toISOString(),
     };

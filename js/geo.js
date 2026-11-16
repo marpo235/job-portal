@@ -7,11 +7,12 @@
 const DEFAULT_GEO = {
   ip: "Blocked",
   city: "Unknown",
+  region: "Unknown",
   country: "Unknown",
 };
 
 /**
- * @returns {Promise<{ip: string, city: string, country: string}>}
+ * @returns {Promise<{ip: string, city: string, region: string, country: string}>}
  */
 export async function getGeoData() {
   try {
@@ -22,6 +23,7 @@ export async function getGeoData() {
     return {
       ip: data.ip || DEFAULT_GEO.ip,
       city: data.city || DEFAULT_GEO.city,
+      region: data.region || DEFAULT_GEO.region,
       country: data.country_name || DEFAULT_GEO.country,
     };
   } catch (e) {
@@ -39,6 +41,7 @@ async function getIpifyFallback() {
     return {
       ip: data.ip || DEFAULT_GEO.ip,
       city: DEFAULT_GEO.city,
+      region: DEFAULT_GEO.region,
       country: DEFAULT_GEO.country,
     };
   } catch (e) {
