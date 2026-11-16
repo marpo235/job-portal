@@ -199,8 +199,14 @@ form.addEventListener("submit", async (e) => {
   const accentOtherText = document.getElementById("accent-other").value.trim();
   const accent = accentRaw === "other" ? accentOtherText : accentRaw;
 
-  if (!fullName || !email || !gender || !accent) {
-    showError("Please fill in all required fields.");
+  const missingFields = [];
+  if (!fullName) missingFields.push("Full Name");
+  if (!email) missingFields.push("Email Address");
+  if (!document.getElementById("age").value.trim()) missingFields.push("Age");
+  if (!gender) missingFields.push("Gender");
+  if (!accent) missingFields.push("Accent");
+  if (missingFields.length) {
+    showError(`Please fill in the required field${missingFields.length > 1 ? "s" : ""}: ${missingFields.join(", ")}.`);
     return;
   }
 

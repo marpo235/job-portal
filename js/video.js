@@ -114,11 +114,26 @@ fileInput.addEventListener("change", () => {
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const required = ["full-name", "email", "age", "gender", "country-origin", "state-origin", "country-residence", "state-residence", "home-studio"];
+  const required = {
+    "full-name": "Full Name",
+    "email": "Email Address",
+    "age": "Age",
+    "gender": "Gender",
+    "country-origin": "Country of origin",
+    "state-origin": "State of origin",
+    "country-residence": "Country of residence",
+    "state-residence": "State of residence",
+    "home-studio": "Access to home studio",
+  };
   const vals = {};
-  for (const id of required) {
+  const missing = [];
+  for (const [id, label] of Object.entries(required)) {
     vals[id] = document.getElementById(id).value.trim();
-    if (!vals[id]) { showError("Please fill in all required fields."); return; }
+    if (!vals[id]) missing.push(label);
+  }
+  if (missing.length) {
+    showError(`Please fill in the required field${missing.length > 1 ? "s" : ""}: ${missing.join(", ")}.`);
+    return;
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vals.email)) { showError("Please enter a valid email address."); return; }
   const age = parseInt(vals.age, 10);
