@@ -79,7 +79,11 @@
               </li>
               <li class="flex gap-3">
                 <span class="shrink-0 mt-0.5 h-5 w-5 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center text-xs font-bold">3</span>
-                <span><strong class="text-slate-800">Language services</strong> — transcription, annotation, reviewing, and research projects in various languages.</span>
+                <span><strong class="text-slate-800">Data annotation</strong> — labelling and tagging speech, text, image, and video content to train AI systems.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="shrink-0 mt-0.5 h-5 w-5 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center text-xs font-bold">4</span>
+                <span><strong class="text-slate-800">Language services</strong> — transcription, reviewing, and research projects in various languages.</span>
               </li>
             </ul>
           </section>
@@ -141,16 +145,104 @@
                 <label for="accent" class="block text-sm font-semibold text-slate-700 mb-1.5">Accent *</label>
                 <select id="accent" name="accent" required class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 bg-white focus:border-brand-700 focus:ring-2 focus:ring-blue-600 focus:ring-opacity-20 transition">
                   <option value="" disabled selected>-- Select --</option>
-                  <option value="en-AB">en-AB</option>
-                  <option value="en-AU">en-AU</option>
-                  <option value="en-GB">en-GB</option>
-                  <option value="en-IE">en-IE</option>
-                  <option value="en-IN">en-IN</option>
-                  <option value="en-NZ">en-NZ</option>
-                  <option value="en-SG">en-SG</option>
-                  <option value="en-US">en-US</option>
-                  <option value="en-WL">en-WL</option>
-                  <option value="en-ZA">en-ZA</option>
+                  <optgroup label="English — British Isles">
+                    <option value="en-AB">en-AB</option>
+                    <option value="en-GB">en-GB — British English (General)</option>
+                    <option value="British English — Received Pronunciation">British English — Received Pronunciation (RP)</option>
+                    <option value="British English — London / Cockney">British English — London / Cockney</option>
+                    <option value="British English — Estuary / South-East">British English — Estuary / South-East</option>
+                    <option value="British English — West Country">British English — West Country</option>
+                    <option value="British English — Midlands">British English — Midlands</option>
+                    <option value="British English — Northern England">British English — Northern England</option>
+                    <option value="British English — Geordie">British English — Geordie</option>
+                    <option value="British English — Scouse">British English — Scouse</option>
+                    <option value="en-IE">en-IE — Irish English (General)</option>
+                    <option value="Irish English — Dublin">Irish English — Dublin</option>
+                    <option value="Irish English — Cork / Southern">Irish English — Cork / Southern</option>
+                    <option value="Northern Irish English / Ulster">Northern Irish English / Ulster</option>
+                    <option value="en-WL">en-WL — Welsh English</option>
+                    <option value="Scottish English — General">Scottish English — General</option>
+                    <option value="Scottish English — Glasgow">Scottish English — Glasgow</option>
+                  </optgroup>
+                  <optgroup label="English — North America">
+                    <option value="en-US">en-US — American English (General)</option>
+                    <option value="American English — Southern">American English — Southern</option>
+                    <option value="American English — New York / New Jersey">American English — New York / New Jersey</option>
+                    <option value="American English — Boston / New England">American English — Boston / New England</option>
+                    <option value="American English — Midwest">American English — Midwest</option>
+                    <option value="American English — West Coast">American English — West Coast</option>
+                    <option value="African American English (AAVE)">African American English (AAVE)</option>
+                    <option value="Canadian English">Canadian English</option>
+                  </optgroup>
+                  <optgroup label="English — Other Regions">
+                    <option value="en-AU">en-AU — Australian English (General)</option>
+                    <option value="en-NZ">en-NZ — New Zealand English</option>
+                    <option value="en-ZA">en-ZA — South African English</option>
+                    <option value="en-IN">en-IN — Indian English</option>
+                    <option value="en-SG">en-SG — Singaporean English</option>
+                    <option value="Pakistani English">Pakistani English</option>
+                    <option value="Nigerian English">Nigerian English</option>
+                    <option value="Kenyan English">Kenyan English</option>
+                    <option value="Ghanaian English">Ghanaian English</option>
+                    <option value="Filipino English">Filipino English</option>
+                    <option value="Malaysian English">Malaysian English</option>
+                    <option value="Jamaican / Caribbean English">Jamaican / Caribbean English</option>
+                  </optgroup>
+                  <optgroup label="Other Languages">
+                    <option value="Albanian">Albanian</option>
+                    <option value="Arabic — Egyptian">Arabic — Egyptian</option>
+                    <option value="Arabic — Gulf">Arabic — Gulf</option>
+                    <option value="Arabic — Levantine">Arabic — Levantine</option>
+                    <option value="Arabic — Maghrebi">Arabic — Maghrebi</option>
+                    <option value="Armenian">Armenian</option>
+                    <option value="Bengali">Bengali</option>
+                    <option value="Bulgarian">Bulgarian</option>
+                    <option value="Cantonese">Cantonese</option>
+                    <option value="Czech">Czech</option>
+                    <option value="Danish">Danish</option>
+                    <option value="Dutch">Dutch</option>
+                    <option value="Farsi / Persian">Farsi / Persian</option>
+                    <option value="Finnish">Finnish</option>
+                    <option value="French — European">French — European</option>
+                    <option value="French — Canadian (Québécois)">French — Canadian (Québécois)</option>
+                    <option value="Georgian">Georgian</option>
+                    <option value="German">German</option>
+                    <option value="Greek">Greek</option>
+                    <option value="Hausa">Hausa</option>
+                    <option value="Hebrew">Hebrew</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Hungarian">Hungarian</option>
+                    <option value="Indonesian / Malay">Indonesian / Malay</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Japanese">Japanese</option>
+                    <option value="Korean">Korean</option>
+                    <option value="Mandarin Chinese">Mandarin Chinese</option>
+                    <option value="Norwegian">Norwegian</option>
+                    <option value="Polish">Polish</option>
+                    <option value="Portuguese — Brazilian">Portuguese — Brazilian</option>
+                    <option value="Portuguese — European">Portuguese — European</option>
+                    <option value="Punjabi">Punjabi</option>
+                    <option value="Romanian">Romanian</option>
+                    <option value="Russian">Russian</option>
+                    <option value="Serbian / Croatian / Bosnian">Serbian / Croatian / Bosnian</option>
+                    <option value="Somali">Somali</option>
+                    <option value="Spanish — Castilian">Spanish — Castilian</option>
+                    <option value="Spanish — Latin American">Spanish — Latin American</option>
+                    <option value="Spanish — Mexican">Spanish — Mexican</option>
+                    <option value="Spanish — Caribbean">Spanish — Caribbean</option>
+                    <option value="Swahili">Swahili</option>
+                    <option value="Swedish">Swedish</option>
+                    <option value="Tagalog">Tagalog</option>
+                    <option value="Tamil">Tamil</option>
+                    <option value="Telugu">Telugu</option>
+                    <option value="Thai">Thai</option>
+                    <option value="Turkish">Turkish</option>
+                    <option value="Ukrainian">Ukrainian</option>
+                    <option value="Urdu">Urdu</option>
+                    <option value="Vietnamese">Vietnamese</option>
+                    <option value="Yoruba">Yoruba</option>
+                    <option value="Zulu">Zulu</option>
+                  </optgroup>
                   <option value="other">Other (please specify)</option>
                 </select>
                 <input type="text" id="accent-other" name="accent_other" placeholder="Please specify your accent" class="hidden mt-2 w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-800 placeholder-slate-400 bg-white focus:border-brand-700 focus:ring-2 focus:ring-blue-600 focus:ring-opacity-20 transition">
