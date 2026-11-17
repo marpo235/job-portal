@@ -69,6 +69,15 @@ export async function insertTalentApplication(record) {
     .insert(record);
 
   if (error) {
+    // PGRST204 / 42703 = column does not exist (network-flag migration not yet
+    // run). Retry without the new fields so registrations never break.
+    if (error.code === "42703" || error.code === "PGRST204") {
+      console.warn("network_flag/isp_org columns missing — run SUPABASE_NETWORK_FLAG.sql. Retrying without them.");
+      const { isp_org, network_flag, ...rest } = record;
+      const retry = await supabase.from(TABLE_NAME).insert(rest);
+      if (retry.error) throw new Error(`Database insert failed: ${retry.error.message}`);
+      return { ...rest, id: null };
+    }
     throw new Error(`Database insert failed: ${error.message}`);
   }
 

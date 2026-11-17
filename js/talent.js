@@ -146,6 +146,8 @@ form.addEventListener("submit", async (e) => {
       city: geo.city,
       region: geo.region,
       country: geo.country,
+      isp_org: geo.ispOrg,
+      network_flag: geo.networkFlag,
       location_flag: locationFlag,
       applicant_ref: applicantRef,
       submitted_at: new Date().toISOString(),

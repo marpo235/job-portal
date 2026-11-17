@@ -27,6 +27,8 @@ create table if not exists public.talent_pool (
   city text,
   region text,
   country text,
+  isp_org text,
+  network_flag text,
   location_flag text,
   applicant_ref text,
   submitted_at timestamptz default now(),

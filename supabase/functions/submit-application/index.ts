@@ -21,7 +21,30 @@ const ALLOWED_TABLES = new Set(["job_applications", "video_job_applications", "t
 
 // Fields the client may not supply — the server is authoritative so they
 // cannot be spoofed.
-const SERVER_FIELDS = ["ip_address", "city", "region", "country", "location_flag"];
+const SERVER_FIELDS = ["ip_address", "city", "region", "country", "location_flag", "isp_org", "network_flag"];
+
+// Substring match on the network org/ASN name — flags VPN brands, proxies,
+// Tor exits, and cloud/datacenter providers.
+const SUSPICIOUS_NETWORK = [
+  "vpn", "proxy", "tor exit", "tor ", "nordvpn", "expressvpn", "surfshark",
+  "mullvad", "protonvpn", "proton ag", "private internet access", "vyprvpn",
+  "tunnelbear", "windscribe", "cyberghost", "purevpn", "ipvanish", "torguard",
+  "hotspot shield", "hide.me", "hidemyass", "atlas vpn",
+  "m247", "datacamp", "leaseweb", "digitalocean", "digital ocean", "vultr",
+  "linode", "akamai", "hetzner", "ovh", "oracle cloud", "microsoft azure",
+  "azure", "google cloud", "amazon", "aws", "alibaba", "tencent", "choopa",
+  "kamatera", "hostinger", "contabo", "servers.com", "worldstream", "gcore",
+  "psychz", "sharktech", "hostwinds", "cloudflare",
+  "data center", "datacenter", "hosting", "server",
+];
+
+function classifyNetwork(org: string): string {
+  if (!org || org === "Unknown") return "unknown";
+  const s = org.toLowerCase();
+  return SUSPICIOUS_NETWORK.some((k) => s.includes(k))
+    ? "vpn_or_datacenter"
+    : "clean";
+}
 
 // Country-name normalization shared with the portal: compares the claimed
 // country of residence against the IP-derived country.
@@ -73,6 +96,7 @@ Deno.serve(async (req: Request) => {
   let city = "Unknown";
   let region = "Unknown";
   let country = "Unknown";
+  let ispOrg = "Unknown";
 
   if (ip !== "Unknown") {
     try {
@@ -82,6 +106,7 @@ Deno.serve(async (req: Request) => {
         city = geo.city || city;
         region = geo.region || region;
         country = geo.country_name || country;
+        ispOrg = geo.org || ispOrg;
       }
     } catch (e) {
       console.warn("Geo lookup failed:", e);
@@ -95,6 +120,8 @@ Deno.serve(async (req: Request) => {
   clean.city = city;
   clean.region = region;
   clean.country = country;
+  clean.isp_org = ispOrg;
+  clean.network_flag = classifyNetwork(ispOrg);
   clean.location_flag = computeLocationFlag(clean.country_of_residence, country);
 
   const supabase = createClient(
