@@ -30,6 +30,7 @@ create table if not exists public.talent_pool (
   isp_org text,
   network_flag text,
   location_flag text,
+  pm_accepted boolean default false,
   applicant_ref text,
   submitted_at timestamptz default now(),
   archived boolean default false,
