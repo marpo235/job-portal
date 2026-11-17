@@ -17,11 +17,32 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-const ALLOWED_TABLES = new Set(["job_applications", "video_job_applications"]);
+const ALLOWED_TABLES = new Set(["job_applications", "video_job_applications", "talent_pool"]);
 
 // Fields the client may not supply — the server is authoritative so they
 // cannot be spoofed.
-const SERVER_FIELDS = ["ip_address", "city", "region", "country"];
+const SERVER_FIELDS = ["ip_address", "city", "region", "country", "location_flag"];
+
+// Country-name normalization shared with the portal: compares the claimed
+// country of residence against the IP-derived country.
+function normalizeCountry(v: string): string {
+  const s = (v || "").toLowerCase().replace(/[^a-z\s]/g, "").replace(/\s+/g, " ").trim();
+  const aliases: Record<string, string> = {
+    "united states": "united states", "united states of america": "united states",
+    usa: "united states", us: "united states", america: "united states",
+    uk: "united kingdom", "great britain": "united kingdom", britain: "united kingdom",
+    england: "united kingdom", scotland: "united kingdom", wales: "united kingdom",
+    "northern ireland": "united kingdom", uae: "united arab emirates",
+    "south korea": "korea republic of", korea: "korea republic of",
+    "czech republic": "czechia", holland: "netherlands",
+  };
+  return aliases[s] || s;
+}
+
+function computeLocationFlag(claimed: unknown, detected: string): string {
+  if (typeof claimed !== "string" || !claimed || detected === "Unknown") return "unknown";
+  return normalizeCountry(claimed) === normalizeCountry(detected) ? "match" : "mismatch";
+}
 
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
@@ -74,6 +95,7 @@ Deno.serve(async (req: Request) => {
   clean.city = city;
   clean.region = region;
   clean.country = country;
+  clean.location_flag = computeLocationFlag(clean.country_of_residence, country);
 
   const supabase = createClient(
     Deno.env.get("SUPABASE_URL") ?? "",
